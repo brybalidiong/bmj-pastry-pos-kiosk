@@ -2,6 +2,21 @@
 [hidden] { display: none !important; }
 #payment-status { min-height: 1.5em; font-size: .95rem; }
 #payment-status.is-error { color: var(--danger); }
+#payment-status.is-success {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  margin: 1rem 0;
+  padding: .9rem 1.1rem;
+  border: 1px solid #bbebca;
+  border-left: 5px solid var(--success);
+  border-radius: 14px;
+  background: var(--success-light);
+  color: #14532d;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.5;
+}
 .method-card[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
 .button:disabled { opacity: .55; cursor: not-allowed; }
 .payment-qr { display: block; width: min(100%, 320px); height: auto; }

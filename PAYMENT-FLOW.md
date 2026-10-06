@@ -5,6 +5,9 @@ http://localhost:8080. Site storage must be enabled. No app packages are require
 
 Menu → Order Summary → Payment Method → Cash/Card/QR → gradual processing →
 inline success → Continue → Payment Success → Receipt → New Transaction (live menu).
+Cash, QR, and card each show a green success message beside their payment controls
+after the simulated sale completes. QR and card disable their in-page Back link at
+that point; Continue remains available.
 
 ## Integration
 
@@ -48,7 +51,8 @@ directory for payment screenshots. Playwright is a test-only tool.
 
 Tests use two 85-peso pastries (total 170): invalid/100 cash rejected, 170 cash
 accepted with zero change, 200 cash accepted with 30 change, gradual card/QR
-progress, success/receipt navigation, receipt reload, audio oscillator triggers,
+progress, visible success messages, disabled QR/card Back links, success/receipt navigation,
+receipt reload, audio oscillator triggers,
 inventory idempotency, changed-order rejection, refreshed totals, direct-success
 protection, empty-order protection, and browser JavaScript errors. Headless audio
 checks verify signal generation, not audible speaker output.

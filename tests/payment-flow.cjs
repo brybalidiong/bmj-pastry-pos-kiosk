@@ -57,6 +57,8 @@ const server = http.createServer((req, res) => {
     async function receipt(paid, change) {
       await page.waitForFunction(() => !document.getElementById('payment-next').hidden);
       assert.match(await page.locator('#payment-status').innerText(), /Payment Successful/);
+      assert.match(await page.locator('#payment-status').innerText(), /Simulated .* payment\. Amount paid:/);
+      assert.equal(await page.locator('#payment-status').evaluate(node => node.classList.contains('is-success')), true);
       assert.equal(await page.locator('#payment-progress').evaluate(el => el.value), 100);
       assert.equal((await page.evaluate(() => soundFrequencies)).filter(n => [660,880].includes(n)).length, 2);
       const sale = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem(BMJPOS.INVENTORY_KEY)).completedOrders)[0]);
@@ -110,6 +112,10 @@ const server = http.createServer((req, res) => {
       await page.waitForFunction(() => document.getElementById('payment-progress').value > 0);
       const mid = await page.locator('#payment-progress').evaluate(el => el.value);
       assert.ok(mid > 0 && mid < 100);
+      await page.waitForFunction(() => !document.getElementById('payment-next').hidden);
+      const back = page.locator('.inline-actions a').first();
+      assert.equal(await back.getAttribute('href'), null);
+      assert.equal(await back.getAttribute('aria-disabled'), 'true');
       await receipt(170,0);
       console.log('PASS ' + method + ' incremental progress, success audio, success and receipt');
     }

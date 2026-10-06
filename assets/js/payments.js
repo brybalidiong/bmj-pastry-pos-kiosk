@@ -9,6 +9,9 @@
   const progress = document.getElementById('payment-progress');
   const progressLabel = document.getElementById('progress-label');
   const next = document.getElementById('payment-next');
+  const back = document.querySelector('.inline-actions a[href="payment-method.html"]');
+  const actionRow = document.querySelector('.inline-actions, .keypad-actions');
+  if (status && actionRow) actionRow.before(status);
   let cart;
   let processing = false;
   let completed = false;
@@ -55,9 +58,10 @@
     } catch { /* Sound must never block checkout. */ }
   }
 
-  function message(text, error = false) {
+  function message(text, error = false, success = false) {
     status.textContent = text;
     status.classList.toggle('is-error', error);
+    status.classList.toggle('is-success', success);
     if (input) input.classList.toggle('is-error', error);
   }
 
@@ -125,7 +129,16 @@
       const sale = store.finalizeSale(cart.orderId, payment);
       if (!sale.payment) throw new Error('This order has no payment record. Please ask staff for help.');
       completed = true;
-      message('✓ Payment Successful' + (page === 'cash' ? ' · Change: ' + money(sale.payment.changeCentavos / 100) : ''));
+      if ((page === 'qr' || page === 'card') && back) {
+        back.removeAttribute('href');
+        back.setAttribute('aria-disabled', 'true');
+        back.classList.add('button-muted');
+        back.tabIndex = -1;
+      }
+      const method = { cash: 'cash', qr: 'QR', card: 'card' }[page];
+      const paid = money(sale.payment.paidCentavos / 100);
+      const change = page === 'cash' ? ' Change: ' + money(sale.payment.changeCentavos / 100) + '.' : '';
+      message(`✓ Payment Successful — Simulated ${method} payment. Amount paid: ${paid}.${change}`, false, true);
       next.href = 'payment-success.html?order=' + encodeURIComponent(sale.orderId);
       next.hidden = false;
       next.focus();
