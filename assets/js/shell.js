@@ -10,6 +10,7 @@ const stage = document.body.dataset.stage || 'order';
 const currentIndex = stages.findIndex((item) => item.key === stage);
 const completedThrough = stage === 'success' ? 2 : currentIndex - 1;
 const header = document.getElementById('site-header');
+const homeHref = document.body.dataset.homeHref || 'index.html';
 
 if (header) {
   const progress = stages.map((item, index) => {
@@ -26,7 +27,7 @@ if (header) {
 
   header.innerHTML =
     '<div class="site-header-inner">' +
-      '<a class="brand" href="index.html" aria-label="BMJ Pastry home">' +
+      '<a class="brand" href="' + homeHref + '" aria-label="BMJ Pastry home">' +
         '<span class="brand-mark" aria-hidden="true">BMJ</span>' +
         '<span class="brand-copy"><span class="brand-name">BMJ Pastry</span>' +
         '<span class="brand-context">Self-service kiosk · UI preview</span></span>' +

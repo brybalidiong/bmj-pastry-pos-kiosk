@@ -1,0 +1,14 @@
+# Local dependencies and secrets for the planned backend
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Local SQLite databases and transient files
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.log
+tmp/
