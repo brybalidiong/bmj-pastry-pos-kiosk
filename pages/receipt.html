@@ -14,6 +14,24 @@
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
     <script src="../assets/js/payments.js" defer></script>
+    <style>
+      #feedback-modal { width: min(440px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 28px; border: 1px solid var(--border); border-radius: 24px; background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+      #feedback-modal::backdrop { background: rgba(22, 42, 79, .55); }
+      #feedback-modal h2 { margin: 0 0 12px; color: var(--navy); font-size: 24px; }
+      #feedback-modal p { color: var(--text-soft); }
+      #feedback-modal fieldset { margin: 20px 0; padding: 0; border: 0; }
+      #feedback-modal legend { margin-bottom: 12px; }
+      #feedback-modal .feedback-stars { display: flex; gap: 4px; justify-content: center; }
+      #feedback-modal .feedback-star { position: relative; display: grid; place-items: center; flex: 1; max-width: 52px; min-height: 52px; cursor: pointer; border-radius: 12px; }
+      #feedback-modal .feedback-star input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+      #feedback-modal .feedback-star span { font-size: 38px; line-height: 1; color: var(--text-soft); }
+      #feedback-modal .feedback-star.is-selected span { color: var(--navy); }
+      #feedback-modal .feedback-star:focus-within { outline: 3px solid var(--navy); outline-offset: 2px; }
+      #feedback-modal .feedback-star:hover { background: var(--accent-light); }
+      #feedback-modal .feedback-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+      #feedback-modal .feedback-actions .button { flex: 1; }
+      #feedback-modal #feedback-error { color: var(--danger); }
+    </style>
   </head>
   <body data-page="receipt" data-home-href="../index.html" data-stage="receipt">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -47,11 +65,105 @@
           <p class="eyebrow">Step 04 / Receipt</p>
           <h1 id="actions-title">Your receipt</h1>
           <p>Keep this digital receipt for your records. When finished, start a new transaction to return to an empty order.</p>
-          <a class="button button-primary" href="../index.html"><span aria-hidden="true">+</span> New Transaction</a>
+          <a class="button button-primary" id="receipt-done" href="../index.html" aria-haspopup="dialog" aria-controls="feedback-modal">Done</a>
           <button class="button" id="print-receipt" type="button">Print Receipt</button>
-          <p class="ui-note">Demo sale only. Print opens your browser’s print dialog. New Transaction returns to the live menu.</p>
+          <p class="ui-note">Demo sale only. Print opens your browser’s print dialog. Done opens feedback before returning to the live menu.</p>
         </section>
       </div>
     </main>
+    <dialog id="feedback-modal" aria-labelledby="feedback-title" aria-describedby="feedback-description">
+      <form id="feedback-form">
+        <h2 id="feedback-title">How was your experience?</h2>
+        <p id="feedback-description">Choose a rating or skip to return to the order page.</p>
+        <fieldset>
+          <legend>Rate your experience from one to five stars</legend>
+          <div class="feedback-stars">
+            <label class="feedback-star"><input type="radio" name="rating" value="1" aria-label="1 star" required><span aria-hidden="true">☆</span></label>
+            <label class="feedback-star"><input type="radio" name="rating" value="2" aria-label="2 stars"><span aria-hidden="true">☆</span></label>
+            <label class="feedback-star"><input type="radio" name="rating" value="3" aria-label="3 stars"><span aria-hidden="true">☆</span></label>
+            <label class="feedback-star"><input type="radio" name="rating" value="4" aria-label="4 stars"><span aria-hidden="true">☆</span></label>
+            <label class="feedback-star"><input type="radio" name="rating" value="5" aria-label="5 stars"><span aria-hidden="true">☆</span></label>
+          </div>
+        </fieldset>
+        <p id="feedback-selection" role="status" aria-live="polite">Select a rating to submit.</p>
+        <p id="feedback-error" role="alert" hidden></p>
+        <div class="feedback-actions">
+          <button class="button" id="feedback-skip" type="button">Skip</button>
+          <button class="button button-primary" id="feedback-submit" type="submit" disabled>Submit</button>
+        </div>
+        <p class="ui-note">Submitted ratings are saved in this browser.</p>
+      </form>
+    </dialog>
+    <script>
+      (() => {
+        'use strict';
+        const done = document.getElementById('receipt-done');
+        const modal = document.getElementById('feedback-modal');
+        const form = document.getElementById('feedback-form');
+        const submit = document.getElementById('feedback-submit');
+        const skip = document.getElementById('feedback-skip');
+        const selection = document.getElementById('feedback-selection');
+        const error = document.getElementById('feedback-error');
+        const ratings = [...form.querySelectorAll('input[name="rating"]')];
+        let continuing = false;
+
+        function updateRating() {
+          const rating = Number(ratings.find(input => input.checked)?.value || 0);
+          ratings.forEach(input => {
+            const selected = Number(input.value) <= rating;
+            input.parentElement.classList.toggle('is-selected', selected);
+            input.parentElement.querySelector('span').textContent = selected ? '★' : '☆';
+          });
+          submit.disabled = rating === 0;
+          selection.textContent = rating ? `${rating} of 5 stars selected.` : 'Select a rating to submit.';
+          error.hidden = true;
+          return rating;
+        }
+
+        function returnToOrder() {
+          if (continuing) return;
+          continuing = true;
+          modal.close();
+          window.location.assign(done.href);
+        }
+
+        done.addEventListener('click', event => {
+          event.preventDefault();
+          if (modal.open || continuing) return;
+          form.reset();
+          updateRating();
+          modal.showModal();
+          ratings[0].focus();
+        });
+        form.addEventListener('change', updateRating);
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+          if (continuing) return;
+          const rating = updateRating();
+          if (!rating) return;
+          try {
+            const key = 'bmjPosFeedback.v1';
+            const saved = window.localStorage.getItem(key);
+            const feedback = saved === null ? [] : JSON.parse(saved);
+            if (!Array.isArray(feedback)) throw new Error('Invalid feedback history');
+            feedback.push({ rating, orderId: new URLSearchParams(window.location.search).get('order'), submittedAt: new Date().toISOString() });
+            window.localStorage.setItem(key, JSON.stringify(feedback));
+          } catch (cause) {
+            error.textContent = 'Could not save your rating. Try Submit again, or choose Skip to continue.';
+            error.hidden = false;
+            return;
+          }
+          returnToOrder();
+        });
+        skip.addEventListener('click', returnToOrder);
+        modal.addEventListener('close', () => { if (!continuing) done.focus(); });
+        window.addEventListener('pageshow', () => {
+          continuing = false;
+          if (modal.open) modal.close();
+          form.reset();
+          updateRating();
+        });
+      })();
+    </script>
   </body>
 </html>
