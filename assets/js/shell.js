@@ -11,6 +11,12 @@ const currentIndex = stages.findIndex((item) => item.key === stage);
 const completedThrough = stage === 'success' ? 2 : currentIndex - 1;
 const header = document.getElementById('site-header');
 const homeHref = document.body.dataset.homeHref || 'index.html';
+const brandMarkSrc = new URL('assets/images/bmj-pastry-mark.svg', new URL(homeHref, window.location.href)).href;
+const favicon = document.createElement('link');
+favicon.rel = 'icon';
+favicon.type = 'image/svg+xml';
+favicon.href = brandMarkSrc;
+document.head.append(favicon);
 
 if (header) {
   const progress = stages.map((item, index) => {
@@ -28,7 +34,7 @@ if (header) {
   header.innerHTML =
     '<div class="site-header-inner">' +
       '<a class="brand" href="' + homeHref + '" aria-label="BMJ Pastry home">' +
-        '<span class="brand-mark" aria-hidden="true">BMJ</span>' +
+        '<span class="brand-mark has-logo" aria-hidden="true"><img src="' + brandMarkSrc + '" alt="" width="46" height="46"></span>' +
         '<span class="brand-copy"><span class="brand-name">BMJ Pastry</span>' +
         '<span class="brand-context">Self-service kiosk · Prototype</span></span>' +
       '</a>' +
