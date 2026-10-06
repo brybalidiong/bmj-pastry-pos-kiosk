@@ -31,7 +31,9 @@ if (header) {
         '<span class="brand-copy"><span class="brand-name">BMJ Pastry</span>' +
         '<span class="brand-context">Self-service kiosk · UI preview</span></span>' +
       '</a>' +
+      '<span class="progress-caption">Checkout flow</span>' +
       '<nav class="progress-nav" aria-label="Checkout progress">' + progress + '</nav>' +
+      '<div class="sidebar-footer"><span class="sidebar-footer-dot" aria-hidden="true"></span> Touchscreen checkout</div>' +
     '</div>';
 }
 

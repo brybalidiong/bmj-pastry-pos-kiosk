@@ -17,7 +17,12 @@
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
       <div class="order-layout">
-        <section aria-labelledby="catalog-title">
+        <section class="surface catalog-panel" aria-labelledby="catalog-title">
+          <div class="catalog-search" aria-label="Search preview">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Search pastries" aria-label="Search pastries (UI preview)" readonly>
+            <span class="search-preview">Menu preview</span>
+          </div>
           <div class="catalog-top">
             <div>
               <p class="eyebrow">Step 01 / New transaction</p>

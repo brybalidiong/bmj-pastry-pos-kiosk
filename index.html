@@ -17,7 +17,12 @@
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
       <div class="order-layout">
-        <section aria-labelledby="catalog-title">
+        <section class="surface catalog-panel" aria-labelledby="catalog-title">
+          <div class="catalog-search" aria-label="Search preview">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Search pastries" aria-label="Search pastries (UI preview)" readonly>
+            <span class="search-preview">Menu preview</span>
+          </div>
           <div class="catalog-top">
             <div>
               <p class="eyebrow">Step 01 / Build an order</p>
@@ -66,15 +71,15 @@
           <div class="cart-head"><h2 id="cart-title">Your Order</h2><span class="cart-count">4 items</span></div>
           <div class="cart-items">
             <div class="cart-item">
-              <div class="cart-item-top"><div><strong>Butter Croissant</strong><small>₱85.00 each</small></div><button class="touch-button remove" type="button" aria-label="Remove Butter Croissant">×</button></div>
+              <div class="cart-item-top"><div><span class="cart-item-art" aria-hidden="true">🥐</span><span><strong>Butter Croissant</strong><small>₱85.00 each</small></span></div><button class="touch-button remove" type="button" aria-label="Remove Butter Croissant">×</button></div>
               <div class="cart-item-bottom"><div class="qty-control"><button class="touch-button" type="button" aria-label="Decrease Butter Croissant">−</button><span>2</span><button class="touch-button plus" type="button" aria-label="Increase Butter Croissant">+</button></div><span class="line-price">₱170.00</span></div>
             </div>
             <div class="cart-item">
-              <div class="cart-item-top"><div><strong>Cinnamon Roll</strong><small>₱90.00 each</small></div><button class="touch-button remove" type="button" aria-label="Remove Cinnamon Roll">×</button></div>
+              <div class="cart-item-top"><div><span class="cart-item-art" aria-hidden="true">🍩</span><span><strong>Cinnamon Roll</strong><small>₱90.00 each</small></span></div><button class="touch-button remove" type="button" aria-label="Remove Cinnamon Roll">×</button></div>
               <div class="cart-item-bottom"><div class="qty-control"><button class="touch-button" type="button" aria-label="Decrease Cinnamon Roll">−</button><span>1</span><button class="touch-button plus" type="button" aria-label="Increase Cinnamon Roll">+</button></div><span class="line-price">₱90.00</span></div>
             </div>
             <div class="cart-item">
-              <div class="cart-item-top"><div><strong>Chocolate Éclair</strong><small>₱110.00 each</small></div><button class="touch-button remove" type="button" aria-label="Remove Chocolate Éclair">×</button></div>
+              <div class="cart-item-top"><div><span class="cart-item-art" aria-hidden="true">🍫</span><span><strong>Chocolate Éclair</strong><small>₱110.00 each</small></span></div><button class="touch-button remove" type="button" aria-label="Remove Chocolate Éclair">×</button></div>
               <div class="cart-item-bottom"><div class="qty-control"><button class="touch-button" type="button" aria-label="Decrease Chocolate Éclair">−</button><span>1</span><button class="touch-button plus" type="button" aria-label="Increase Chocolate Éclair">+</button></div><span class="line-price">₱110.00</span></div>
             </div>
           </div>

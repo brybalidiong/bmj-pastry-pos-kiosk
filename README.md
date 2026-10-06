@@ -10,6 +10,12 @@ controls, confirmation, and a digital receipt. The visual design follows the
 team's Online Invigilation System: Poppins, navy #1D3461, pale #f4f7fb,
 rounded white cards, and restrained shadows.
 
+The order screen also takes layout inspiration from the supplied cafe POS image:
+a left checkout rail on wide kiosk screens, a contained menu with search and
+category controls, product cards, and a separate cart summary. The same pastry
+items, prices, order total, and checkout screens remain in place. On narrow
+screens, the rail becomes the top progress header. Search is a visual preview.
+
 ## Preview screens
 
 - index.html: populated sample order
