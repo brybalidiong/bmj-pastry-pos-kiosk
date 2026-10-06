@@ -64,7 +64,8 @@
     return art;
   }
 
-  function renderProducts() {
+  function renderProducts(resetScroll = false) {
+    const scrollTop = resetScroll ? 0 : grid.scrollTop;
     const quantities = new Map(store.getCart().items.map((item) => [item.productId, item.quantity]));
     const term = normalized(search.value.trim());
     const visible = products.filter((product) =>
@@ -103,6 +104,7 @@
     });
 
     grid.replaceChildren(fragment);
+    grid.scrollTop = scrollTop;
     emptyResults.hidden = visible.length !== 0;
     resultCount.textContent = `${visible.length} product${visible.length === 1 ? '' : 's'}`;
   }
@@ -211,7 +213,7 @@
     if (button && !button.disabled) updateCart(button.dataset.action, button.dataset.productId);
   });
 
-  search.addEventListener('input', renderProducts);
+  search.addEventListener('input', () => renderProducts(true));
   categoryRow.addEventListener('click', (event) => {
     const chip = event.target.closest('[data-category]');
     if (!chip) return;
@@ -221,7 +223,7 @@
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    renderProducts();
+    renderProducts(true);
   });
 
   reviewLink.addEventListener('click', (event) => {

@@ -270,6 +270,98 @@ body[data-page="catalog"] .review-link.is-disabled {
   pointer-events: auto;
 }
 
+/* On wide kiosks, keep the shell in place while the menu cards scroll. */
+@media (min-width: 1081px) and (min-height: 620px) {
+  body[data-page="catalog"] {
+    height: 100dvh;
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  body[data-page="catalog"] .kiosk-main {
+    height: calc(100dvh - 36px);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-page="catalog"] .order-layout {
+    height: 100%;
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  body[data-page="catalog"] .catalog-panel {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  body[data-page="catalog"] .catalog-search,
+  body[data-page="catalog"] .catalog-top {
+    flex: 0 0 auto;
+  }
+
+  body[data-page="catalog"] .product-grid {
+    min-height: 0;
+    flex: 1 1 auto;
+    grid-auto-rows: max-content;
+    align-content: start;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+    scrollbar-color: #5d7896 #e8f0f7;
+    padding: 0.35rem 0.65rem 0.65rem 0.35rem;
+    touch-action: pan-y;
+  }
+
+  body[data-page="catalog"] .product-grid::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  body[data-page="catalog"] .product-grid::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: #e8f0f7;
+  }
+
+  body[data-page="catalog"] .product-grid::-webkit-scrollbar-thumb {
+    border: 3px solid #e8f0f7;
+    border-radius: 999px;
+    background: #5d7896;
+  }
+
+  body[data-page="catalog"] .product-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--navy);
+  }
+
+  body[data-page="catalog"] .product-grid:empty {
+    flex: 0 0 auto;
+  }
+
+  body[data-page="catalog"] .catalog-empty:not([hidden]) {
+    display: grid;
+    min-height: 0;
+    flex: 1 1 auto;
+    align-content: center;
+    margin: 0;
+  }
+
+  body[data-page="catalog"] .cart-panel {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    position: static;
+  }
+
+  body[data-page="catalog"] .cart-items {
+    flex: 1 1 auto;
+  }
+}
+
 @media (max-width: 1080px) {
   body[data-page="catalog"] .order-layout {
     grid-template-columns: minmax(0, 1fr);
