@@ -130,6 +130,7 @@
       if (!sale.payment) throw new Error('This order has no payment record. Please ask staff for help.');
       completed = true;
       if ((page === 'qr' || page === 'card') && back) {
+        // A completed simulated sale cannot return to payment method selection.
         back.removeAttribute('href');
         back.setAttribute('aria-disabled', 'true');
         back.classList.add('button-muted');

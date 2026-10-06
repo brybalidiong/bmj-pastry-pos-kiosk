@@ -7,7 +7,7 @@ Menu → Order Summary → Payment Method → Cash/Card/QR → gradual processin
 inline success → Continue → Payment Success → Receipt → New Transaction (live menu).
 Cash, QR, and card each show a green success message beside their payment controls
 after the simulated sale completes. QR and card disable their in-page Back link at
-that point; Continue remains available.
+that point; Continue remains available for the success and receipt screens.
 
 ## Integration
 

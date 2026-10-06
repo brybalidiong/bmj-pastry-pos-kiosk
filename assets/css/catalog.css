@@ -245,6 +245,7 @@ body[data-page="catalog"] .cart-panel .button {
 
 body[data-page="catalog"] .review-link.is-disabled {
   opacity: 0.5;
+  pointer-events: auto;
 }
 
 @media (max-width: 1080px) {
