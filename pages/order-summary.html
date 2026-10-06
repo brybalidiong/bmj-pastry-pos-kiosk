@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <style>
+      #review-status { margin: 0; padding: 24px; }
+      #review-status.is-error { color: #b42318; }
+      #review-retry { margin: 0 24px 24px; }
+      #continue-payment[aria-disabled="true"] { cursor: not-allowed; opacity: .55; }
+    </style>
   </head>
   <body data-home-href="../index.html" data-stage="review">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -25,21 +33,115 @@
         <span class="preview-tag">UI preview</span>
       </div>
 
-      <section class="surface review-card" aria-label="Sample order summary">
-        <div class="review-scroll">
-          <div class="review-head"><span>Product</span><span>Quantity</span><span>Unit price</span><span>Subtotal</span></div>
-          <div class="review-row"><strong>Butter Croissant</strong><span>2</span><span>₱85.00</span><strong>₱170.00</strong></div>
-          <div class="review-row"><strong>Cinnamon Roll</strong><span>1</span><span>₱90.00</span><strong>₱90.00</strong></div>
-          <div class="review-row"><strong>Chocolate Éclair</strong><span>1</span><span>₱110.00</span><strong>₱110.00</strong></div>
+      <section class="surface review-card" id="review-card" aria-label="Order summary" aria-busy="true">
+        <p id="review-status" role="status" aria-live="polite">Loading your order…</p>
+        <button class="button" id="review-retry" type="button" hidden>Try again</button>
+        <div class="review-scroll" role="table" aria-label="Order items">
+          <div class="review-head" role="row"><span role="columnheader">Product</span><span role="columnheader">Quantity</span><span role="columnheader">Unit price</span><span role="columnheader">Subtotal</span></div>
+          <div id="review-items" role="rowgroup"></div>
         </div>
-        <div class="review-total"><div><strong>Total amount</strong><small>4 items</small></div><strong class="money">₱370.00</strong></div>
+        <div class="review-total"><div><strong>Total amount</strong><small id="review-count">—</small></div><strong class="money" id="review-total">—</strong></div>
       </section>
 
-      <nav class="page-actions" aria-label="Order preview navigation">
+      <nav class="page-actions" aria-label="Order navigation">
         <a class="button" href="../index.html"><span aria-hidden="true">←</span> Back to products</a>
-        <a class="button button-primary" href="payment-method.html">Continue to payment <span aria-hidden="true">→</span></a>
+        <a class="button button-primary" id="continue-payment" role="link" tabindex="0" aria-disabled="true" aria-describedby="review-status">Continue to payment <span aria-hidden="true">→</span></a>
       </nav>
-      <p class="ui-note">This is a static sample order for the UI skeleton.</p>
+      <p class="ui-note">Your order is saved in this browser. Return to products to change quantities or remove items.</p>
+      <noscript><p class="ui-note">JavaScript is required to load your saved order. Enable it and reload this page.</p></noscript>
     </main>
+    <script>
+      (() => {
+        'use strict';
+        const card = document.getElementById('review-card');
+        const status = document.getElementById('review-status');
+        const retry = document.getElementById('review-retry');
+        const items = document.getElementById('review-items');
+        const count = document.getElementById('review-count');
+        const total = document.getElementById('review-total');
+        const continueLink = document.getElementById('continue-payment');
+        const money = new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' });
+
+        function allowPayment(allowed) {
+          continueLink.setAttribute('aria-disabled', String(!allowed));
+          if (allowed) continueLink.setAttribute('href', 'payment-method.html');
+          else continueLink.removeAttribute('href');
+        }
+
+        function refresh() {
+          allowPayment(false);
+          card.setAttribute('aria-busy', 'true');
+          retry.hidden = true;
+          status.classList.remove('is-error');
+          try {
+            const store = window.BMJPOS;
+            if (!store) throw new Error('Order services could not load. Check your connection and reload this page.');
+            const cart = store.getCart();
+            const products = new Map(store.getProducts().map(product => [product.id, product]));
+            // Validate inventory through the store before reading its documented stock snapshot.
+            cart.items.forEach(item => store.getAvailableStock(item.productId));
+            const inventory = JSON.parse(window.localStorage.getItem(store.INVENTORY_KEY));
+            const shortages = cart.items.filter(item => item.quantity >
+              (inventory?.stockByProductId[item.productId] ?? products.get(item.productId).baseStock));
+            const fragment = document.createDocumentFragment();
+            for (const item of cart.items) {
+              const row = document.createElement('div');
+              row.className = 'review-row';
+              row.setAttribute('role', 'row');
+              [item.name, String(item.quantity), money.format(item.unitPrice), money.format(item.lineSubtotal)]
+                .forEach((value, index) => {
+                  const cell = document.createElement(index === 0 || index === 3 ? 'strong' : 'span');
+                  cell.setAttribute('role', 'cell');
+                  cell.textContent = value;
+                  row.append(cell);
+                });
+              fragment.append(row);
+            }
+            items.replaceChildren(fragment);
+            count.textContent = `${cart.itemCount} item${cart.itemCount === 1 ? '' : 's'}`;
+            total.textContent = money.format(cart.total);
+            if (!cart.itemCount) {
+              status.textContent = 'Your order is empty. Go back to products to add pastries before paying.';
+            } else if (shortages.length) {
+              status.classList.add('is-error');
+              status.textContent = `Insufficient stock for ${shortages.map(item => item.name).join(', ')}. Go back to products to reduce quantities or remove these items.`;
+            } else {
+              status.textContent = 'Your saved order is ready for payment.';
+              allowPayment(true);
+            }
+            return continueLink.getAttribute('aria-disabled') === 'false';
+          } catch (error) {
+            items.replaceChildren();
+            count.textContent = '—';
+            total.textContent = '—';
+            status.classList.add('is-error');
+            status.textContent = error.message || 'Could not load your order. Please try again.';
+            retry.hidden = false;
+            return false;
+          } finally {
+            card.setAttribute('aria-busy', 'false');
+          }
+        }
+
+        retry.addEventListener('click', refresh);
+        continueLink.addEventListener('click', event => {
+          // Recheck saved data even when another tab changed it immediately before checkout.
+          if (!refresh()) event.preventDefault();
+        });
+        continueLink.addEventListener('keydown', event => {
+          if (event.key === 'Enter' && !continueLink.hasAttribute('href')) {
+            event.preventDefault();
+            refresh();
+          }
+        });
+        window.addEventListener('storage', event => {
+          const store = window.BMJPOS;
+          if (!event.key || (store && [store.CART_KEY, store.INVENTORY_KEY].includes(event.key))) refresh();
+        });
+        window.addEventListener('pageshow', refresh);
+        window.addEventListener('focus', refresh);
+        document.addEventListener('DOMContentLoaded', refresh, { once: true });
+      })();
+    </script>
   </body>
 </html>
