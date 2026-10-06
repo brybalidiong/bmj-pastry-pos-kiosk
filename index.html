@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1d3461">
+    <title>Products | BMJ Pastry POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/catalog.css">
+    <script src="assets/shell.js" defer></script>
+  </head>
+  <body data-step="1">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
+      <main class="main-content" id="main-content">
+        <div class="page-frame">
+          <header class="main-header">
+            <div>
+              <p class="eyebrow">Transaction flow / Step 01 of 06</p>
+              <h1>Choose your pastries</h1>
+              <p class="header-sub">A clear, touch-friendly starting point for every order.</p>
+            </div>
+            <span class="status-pill">UI preview</span>
+          </header>
+
+          <section class="hero-card" aria-labelledby="hero-title">
+            <div class="hero-copy">
+              <p class="hero-eyebrow">BMJ Pastry / Menu</p>
+              <h2 id="hero-title">A sweet order starts here.</h2>
+              <p>Browse the pastry menu and build an order in one simple view.</p>
+            </div>
+            <span class="hero-step" aria-hidden="true">01</span>
+          </section>
+
+          <div class="content-grid catalog-layout">
+            <section class="surface-card workspace-card" aria-labelledby="menu-title">
+              <div class="section-heading">
+                <div>
+                  <h3 id="menu-title">Pastry menu</h3>
+                  <p>Product cards will show each pastry and its price.</p>
+                </div>
+                <span class="subtle-pill">6 item slots</span>
+              </div>
+              <div class="product-grid" aria-label="Empty product card slots">
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">01</div><div class="product-meta"><strong>Pastry item</strong><span>01</span></div><p class="product-hint">Name and price go here</p></div>
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">02</div><div class="product-meta"><strong>Pastry item</strong><span>02</span></div><p class="product-hint">Name and price go here</p></div>
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">03</div><div class="product-meta"><strong>Pastry item</strong><span>03</span></div><p class="product-hint">Name and price go here</p></div>
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">04</div><div class="product-meta"><strong>Pastry item</strong><span>04</span></div><p class="product-hint">Name and price go here</p></div>
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">05</div><div class="product-meta"><strong>Pastry item</strong><span>05</span></div><p class="product-hint">Name and price go here</p></div>
+                <div class="placeholder-product"><div class="product-art" aria-hidden="true">06</div><div class="product-meta"><strong>Pastry item</strong><span>06</span></div><p class="product-hint">Name and price go here</p></div>
+              </div>
+            </section>
+
+            <aside class="surface-card aside-card" aria-labelledby="order-title">
+              <h3 id="order-title">Current order</h3>
+              <p>Selected pastries will be listed here.</p>
+              <div class="empty-order compact">
+                <div class="empty-icon" aria-hidden="true">+</div>
+                <strong>Nothing in your order yet</strong>
+                <span>Your choices will appear here as you add them.</span>
+              </div>
+              <div class="total-row"><span>Total</span><strong>₱0.00</strong></div>
+            </aside>
+          </div>
+
+          <nav class="page-actions" aria-label="Preview navigation">
+            <a class="button button-primary" href="order-summary.html">Preview order summary <span aria-hidden="true">→</span></a>
+          </nav>
+          <p class="page-note">Layout preview only. Ordering controls will be added later.</p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

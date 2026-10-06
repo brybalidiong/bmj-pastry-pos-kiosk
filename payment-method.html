@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1d3461">
+    <title>Payment Method | BMJ Pastry POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/checkout.css">
+    <script src="assets/shell.js" defer></script>
+  </head>
+  <body data-step="3">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
+      <main class="main-content" id="main-content">
+        <div class="page-frame">
+          <header class="main-header">
+            <div>
+              <p class="eyebrow">Transaction flow / Step 03 of 06</p>
+              <h1>Choose a payment method</h1>
+              <p class="header-sub">Three simple ways to complete a pastry order.</p>
+            </div>
+            <span class="status-pill">UI preview</span>
+          </header>
+
+          <section class="hero-card" aria-labelledby="hero-title">
+            <div class="hero-copy">
+              <p class="hero-eyebrow">BMJ Pastry / Payment method</p>
+              <h2 id="hero-title">How would you like to pay?</h2>
+              <p>Cash, QR, and card options will be easy to spot and tap.</p>
+            </div>
+            <span class="hero-step" aria-hidden="true">03</span>
+          </section>
+
+          <section class="surface-card workspace-card" aria-labelledby="method-title">
+            <div class="section-heading">
+              <div>
+                <h3 id="method-title">Available methods</h3>
+                <p>These are visual placeholders for the payment choices.</p>
+              </div>
+              <span class="subtle-pill">3 methods</span>
+            </div>
+            <div class="method-grid">
+              <div class="method-card"><span class="method-symbol" aria-hidden="true">₱</span><h4>Cash</h4><p>Enter the amount received and show the change due.</p></div>
+              <div class="method-card"><span class="method-symbol" aria-hidden="true">▦</span><h4>QR payment</h4><p>Show a code or placeholder with clear scan instructions.</p></div>
+              <div class="method-card"><span class="method-symbol" aria-hidden="true">▭</span><h4>Credit / Debit</h4><p>Show a card prompt and a short processing state.</p></div>
+            </div>
+          </section>
+
+          <nav class="page-actions" aria-label="Preview navigation">
+            <a class="button" href="order-summary.html"><span aria-hidden="true">←</span> Back to summary</a>
+            <a class="button button-primary" href="payment-processing.html">Preview processing screen <span aria-hidden="true">→</span></a>
+          </nav>
+          <p class="page-note">Layout preview only. Method selection will be added later.</p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
