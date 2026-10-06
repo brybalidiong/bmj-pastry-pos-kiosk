@@ -3,7 +3,7 @@ body[data-page="catalog"] .product-art {
   position: relative;
   flex: 0 0 auto;
   overflow: hidden;
-  background: #eeeae4;
+  background: #e7f0f6;
 }
 
 body[data-page="catalog"] .product-image {
@@ -27,7 +27,7 @@ body[data-page="catalog"] .catalog-search {
 
 body[data-page="catalog"] .catalog-search:focus-within {
   border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(29, 52, 97, 0.12);
+  box-shadow: 0 0 0 3px rgba(53, 97, 125, 0.12);
 }
 
 body[data-page="catalog"] .catalog-search input {

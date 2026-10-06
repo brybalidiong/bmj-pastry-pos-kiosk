@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>Order Pastries | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/catalog.css">
+    <script src="assets/js/icons.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/products.js" defer></script>
     <script src="assets/js/order-store.js" defer></script>
@@ -22,7 +23,7 @@
       <div class="order-layout">
         <section class="surface catalog-panel" aria-labelledby="catalog-title">
           <label class="catalog-search" for="catalog-search-input">
-            <span aria-hidden="true">⌕</span>
+            <span data-icon="search" aria-hidden="true"></span>
             <input id="catalog-search-input" type="search" placeholder="Search pastries, breads, coffee" autocomplete="off" aria-label="Search products">
             <span class="search-preview" id="catalog-result-count" aria-live="polite">Menu</span>
           </label>
@@ -49,7 +50,7 @@
           <div class="cart-head"><h2 id="cart-title">Your Order</h2><span class="cart-count" id="cart-count">0 items</span></div>
           <div class="cart-items" id="cart-items" aria-live="polite"></div>
           <div class="cart-total"><span>Total</span><strong id="cart-total">₱0.00</strong></div>
-          <a class="button button-primary button-wide review-link is-disabled" id="review-link" href="pages/order-summary.html" aria-disabled="true">Review order <span aria-hidden="true">→</span></a>
+          <a class="button button-primary button-wide review-link is-disabled" id="review-link" href="pages/order-summary.html" aria-disabled="true">Review order <span data-icon="arrow-right" aria-hidden="true"></span></a>
           <p class="cart-feedback" id="cart-feedback" role="status" aria-live="polite">Add an item to start your order.</p>
         </aside>
       </div>

@@ -109,6 +109,7 @@
 
   function cartAction(label, action, product, content, extraClass = '') {
     const button = element('button', 'touch-button' + (extraClass ? ' ' + extraClass : ''), content);
+    button.replaceChildren(window.BMJIcons.create({ remove: 'trash', increase: 'plus', decrease: 'minus' }[action]));
     button.type = 'button';
     button.dataset.action = action;
     button.dataset.productId = product.id;
@@ -122,7 +123,8 @@
 
     if (cart.items.length === 0) {
       const empty = element('div', 'empty-cart');
-      const icon = element('span', 'empty-cart-icon', '🛒');
+      const icon = element('span', 'empty-cart-icon');
+      icon.append(window.BMJIcons.create('basket'));
       icon.setAttribute('aria-hidden', 'true');
       empty.append(icon, element('strong', '', 'Your order is empty'),
         element('p', '', 'Tap a product to add it to your order.'));
@@ -135,7 +137,9 @@
         row.dataset.productId = product.id;
         const top = element('div', 'cart-item-top');
         const details = element('div');
-        const art = element('span', 'cart-item-art', product.emoji);
+        const art = element('span', 'cart-item-art');
+        const iconName = { Pastries: 'croissant', Breads: 'bread', Desserts: 'cake', Coffee: 'cup' }[product.category];
+        art.append(window.BMJIcons.create(iconName));
         art.setAttribute('aria-hidden', 'true');
         const labels = element('span');
         labels.append(element('strong', '', product.name),

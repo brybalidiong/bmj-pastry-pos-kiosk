@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>Cash Payment | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <script src="../assets/js/icons.js" defer></script>
     <script src="../assets/js/shell.js" defer></script>
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
@@ -22,7 +23,7 @@
       <div class="processing-banner"><progress id="payment-progress" max="100" value="0" aria-label="Simulated payment progress"></progress> <span id="progress-label">0%</span></div>
       <div class="payment-layout">
         <section aria-labelledby="cash-title">
-          <div class="payment-title"><span class="payment-icon" aria-hidden="true">₱</span><h1 id="cash-title">Cash Payment</h1></div>
+          <div class="payment-title"><span class="payment-icon" data-icon="cash" aria-hidden="true"></span><h1 id="cash-title">Cash Payment</h1></div>
           <div class="amount-banner"><span>Total amount</span><strong data-order-total>—</strong></div>
           <label class="cash-field" for="cash-input">Amount paid</label>
           <input class="cash-input" id="cash-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-describedby="payment-status">
@@ -41,12 +42,12 @@
             <button type="button">1</button><button type="button">2</button><button type="button">3</button>
             <button type="button">4</button><button type="button">5</button><button type="button">6</button>
             <button type="button">7</button><button type="button">8</button><button type="button">9</button>
-            <button class="key-muted" type="button">Clear</button><button type="button">0</button><button class="key-muted" type="button" aria-label="Delete last digit">⌫</button>
+            <button class="key-muted" type="button">Clear</button><button type="button">0</button><button class="key-muted" type="button" aria-label="Delete last digit"><span class="visually-hidden">⌫</span><span data-icon="backspace" aria-hidden="true"></span></button>
           </div>
           <div class="keypad-actions">
             <button class="button button-primary button-wide" id="simulate-payment" type="button" disabled>Simulate Cash Payment</button>
             <a class="button button-primary" id="payment-next" hidden>Continue →</a>
-            <a class="button button-wide" href="payment-method.html"><span aria-hidden="true">←</span> Change payment method</a>
+            <a class="button button-wide" href="payment-method.html"><span data-icon="arrow-left" aria-hidden="true"></span> Change payment method</a>
           </div>
           <p class="ui-note" id="cash-preview-note">Simulation only. Enter cash using the keyboard or keypad; no money is collected.</p>
         </aside>

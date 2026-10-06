@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>Review Order | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <script src="../assets/js/icons.js" defer></script>
     <script src="../assets/js/shell.js" defer></script>
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
@@ -44,8 +45,8 @@
       </section>
 
       <nav class="page-actions" aria-label="Order navigation">
-        <a class="button" href="../index.html"><span aria-hidden="true">←</span> Back to products</a>
-        <a class="button button-primary" id="continue-payment" role="link" tabindex="0" aria-disabled="true" aria-describedby="review-status">Continue to payment <span aria-hidden="true">→</span></a>
+        <a class="button" href="../index.html"><span data-icon="arrow-left" aria-hidden="true"></span> Back to products</a>
+        <a class="button button-primary" id="continue-payment" role="link" tabindex="0" aria-disabled="true" aria-describedby="review-status">Continue to payment <span data-icon="arrow-right" aria-hidden="true"></span></a>
       </nav>
       <p class="ui-note">Your order is saved in this browser. Return to products to change quantities or remove items.</p>
       <noscript><p class="ui-note">JavaScript is required to load your saved order. Enable it and reload this page.</p></noscript>

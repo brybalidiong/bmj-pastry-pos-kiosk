@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>Choose Payment | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <script src="../assets/js/icons.js" defer></script>
     <script src="../assets/js/shell.js" defer></script>
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
@@ -30,24 +31,24 @@
 
       <div class="method-grid" aria-label="Payment method options">
         <a class="method-card" href="payment-processing.html">
-          <span class="method-icon" style="--icon-bg:#e8f7ed;--icon-fg:#15803d" aria-hidden="true">₱</span>
+          <span class="method-icon" data-icon="cash" aria-hidden="true"></span>
           <h2>Cash</h2>
           <p>Enter the amount received. Change will be shown before finishing.</p>
         </a>
         <a class="method-card" href="qr-payment.html">
-          <span class="method-icon" style="--icon-bg:#e5efff;--icon-fg:#244a9b" aria-hidden="true">▦</span>
+          <span class="method-icon" data-icon="qr" aria-hidden="true"></span>
           <h2>QR Payment</h2>
           <p>Scan the demo code, then simulate a QR payment.</p>
         </a>
         <a class="method-card" href="card-payment.html">
-          <span class="method-icon" style="--icon-bg:#edeafd;--icon-fg:#6246a5" aria-hidden="true">▭</span>
+          <span class="method-icon" data-icon="card" aria-hidden="true"></span>
           <h2>Credit / Debit Card</h2>
           <p>Simulate tapping a card at the reader. No card details needed.</p>
         </a>
       </div>
 
       <nav class="page-actions" aria-label="Payment preview navigation">
-        <a class="button" href="order-summary.html"><span aria-hidden="true">←</span> Back to order</a>
+        <a class="button" href="order-summary.html"><span data-icon="arrow-left" aria-hidden="true"></span> Back to order</a>
       </nav>
       <p class="ui-note">Prototype only. All payment methods are simulated; no money is transferred.</p>
     <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>

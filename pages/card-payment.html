@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>Card Payment | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <script src="../assets/js/icons.js" defer></script>
     <script src="../assets/js/shell.js" defer></script>
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
@@ -23,20 +24,20 @@
         <section class="surface terminal-panel" aria-label="Illustration of a card reader">
           <div class="card-terminal" aria-hidden="true">
             <div class="terminal-screen"><small>DEMO READER</small><strong data-order-total>—</strong></div>
-            <span class="terminal-tap">)))</span>
+            <span class="terminal-tap" data-icon="contactless" aria-hidden="true"></span>
             <span class="terminal-slot"></span>
             <div class="bank-card"><span class="bank-chip"></span><span>DEMO CARD</span></div>
           </div>
         </section>
 
         <section aria-labelledby="card-title">
-          <div class="payment-title"><span class="payment-icon" aria-hidden="true">▭</span><h1 id="card-title">Credit / Debit Card</h1></div>
+          <div class="payment-title"><span class="payment-icon" data-icon="card" aria-hidden="true"></span><h1 id="card-title">Credit / Debit Card</h1></div>
           <div class="amount-banner"><span>Amount due</span><strong data-order-total>—</strong></div>
           <p class="card-instruction">Ready to tap card. Use the simulation control below.</p>
           <div class="processing-banner"><progress id="payment-progress" max="100" value="0" aria-label="Simulated payment progress"></progress> <span id="progress-label">0%</span></div>
           <div class="inline-actions">
-            <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back</a>
-            <button class="button button-primary" id="simulate-payment" type="button" disabled>Simulate Card Scan</button>
+            <a class="button" href="payment-method.html"><span data-icon="arrow-left" aria-hidden="true"></span> Back</a>
+            <button class="button button-primary" id="simulate-payment" type="button" disabled>Scan Card</button>
             <a class="button button-primary" id="payment-next" hidden>Continue →</a>
           </div>
           <p class="ui-note">Card reader and processing state are visual previews; no card data is collected.</p>

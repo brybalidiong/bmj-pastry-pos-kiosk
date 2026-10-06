@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1d3461">
+    <meta name="theme-color" content="#dcecf6">
     <title>QR Payment | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <script src="../assets/js/icons.js" defer></script>
     <script src="../assets/js/shell.js" defer></script>
     <script src="../assets/js/products.js" defer></script>
     <script src="../assets/js/order-store.js" defer></script>
@@ -26,13 +27,13 @@
         </section>
 
         <section aria-labelledby="qr-title">
-          <div class="payment-title"><span class="payment-icon" aria-hidden="true">▦</span><h1 id="qr-title">QR Payment</h1></div>
+          <div class="payment-title"><span class="payment-icon" data-icon="qr" aria-hidden="true"></span><h1 id="qr-title">QR Payment</h1></div>
           <div class="amount-banner"><span>Amount to pay</span><strong data-order-total>—</strong></div>
           <p>Scan this code with a normal QR scanner to open the Google Drive file. Then use the button below to simulate payment.</p>
           <div class="processing-banner"><progress id="payment-progress" max="100" value="0" aria-label="Simulated payment progress"></progress> <span id="progress-label">0%</span></div>
           <div class="inline-actions">
-            <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back</a>
-            <button class="button button-primary" id="simulate-payment" type="button" disabled>Simulate QR Payment</button>
+            <a class="button" href="payment-method.html"><span data-icon="arrow-left" aria-hidden="true"></span> Back</a>
+            <button class="button button-primary" id="simulate-payment" type="button" disabled>Confirm QR Payment</button>
             <a class="button button-primary" id="payment-next" hidden>Continue →</a>
           </div>
           <p class="ui-note">Simulation only. Opening the Google Drive file does not make or confirm a payment.</p>
