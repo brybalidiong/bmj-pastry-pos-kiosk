@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1d3461">
-    <title>Payment Processing | BMJ Pastry POS</title>
+    <title>Cash Payment | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,64 +12,44 @@
     <link rel="stylesheet" href="assets/checkout.css">
     <script src="assets/shell.js" defer></script>
   </head>
-  <body data-step="4">
+  <body data-stage="payment" data-page="cash">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="app-shell">
-      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
-      <main class="main-content" id="main-content">
-        <div class="page-frame">
-          <header class="main-header">
-            <div>
-              <p class="eyebrow">Transaction flow / Step 04 of 06</p>
-              <h1>Process payment</h1>
-              <p class="header-sub">One focused screen for the method the customer chose.</p>
-            </div>
-            <span class="status-pill">UI preview</span>
-          </header>
-
-          <section class="hero-card" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <p class="hero-eyebrow">BMJ Pastry / Processing</p>
-              <h2 id="hero-title">You're almost finished.</h2>
-              <p>The selected payment method and exact amount due will be shown here.</p>
-            </div>
-            <span class="hero-step" aria-hidden="true">04</span>
-          </section>
-
-          <div class="content-grid payment-layout">
-            <section class="surface-card workspace-card" aria-labelledby="payment-title">
-              <div class="section-heading">
-                <div>
-                  <h3 id="payment-title">Payment details</h3>
-                  <p>The cash, QR, or card interface will occupy this area.</p>
-                </div>
-              </div>
-              <div class="form-placeholder" aria-label="Payment form placeholders">
-                <div class="field-placeholder"><label>Selected method</label><div class="fake-input">Payment method appears here</div></div>
-                <div class="field-placeholder"><label>Payment action</label><div class="fake-input">Method-specific controls appear here</div></div>
-              </div>
-              <p class="info-note">Customers will receive clear feedback while a payment is checked or processed.</p>
-            </section>
-
-            <aside class="surface-card aside-card" aria-labelledby="due-title">
-              <h3 id="due-title">Amount due</h3>
-              <p>The total remains consistent with the order summary.</p>
-              <div class="empty-order compact">
-                <div class="empty-icon" aria-hidden="true">₱</div>
-                <strong>Awaiting an order</strong>
-                <span>Payment details will appear after a method is selected.</span>
-              </div>
-              <div class="total-row"><span>Total due</span><strong>₱0.00</strong></div>
-            </aside>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <div class="payment-layout">
+        <section aria-labelledby="cash-title">
+          <div class="payment-title"><span class="payment-icon" aria-hidden="true">₱</span><h1 id="cash-title">Cash Payment</h1></div>
+          <div class="amount-banner"><span>Total amount</span><strong>₱370.00</strong></div>
+          <label class="cash-field" for="cash-input">Amount paid</label>
+          <input class="cash-input" id="cash-input" type="text" inputmode="none" value="₱500.00" readonly aria-describedby="cash-preview-note">
+          <div class="feedback-error" id="cash-error" role="alert" hidden>
+            <span><strong>Insufficient payment.</strong>Enter at least ₱370.00. The sample amount is short by ₱270.00.</span>
           </div>
+          <p class="quick-label">Quick amounts</p>
+          <div class="quick-row" aria-label="Sample quick amount buttons">
+            <button type="button">Exact</button>
+            <button class="is-selected" type="button">₱500</button>
+            <button type="button">₱1,000</button>
+            <button type="button">₱2,000</button>
+          </div>
+          <div class="change-banner" id="cash-change"><div><span>Change</span><small>₱500.00 − ₱370.00</small></div><strong>₱130.00</strong></div>
+          <a class="text-link" id="cash-state-link" href="payment-processing.html?state=insufficient">Preview insufficient cash state</a>
+        </section>
 
-          <nav class="page-actions" aria-label="Preview navigation">
-            <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back to methods</a>
-            <a class="button button-primary" href="payment-success.html">Preview success screen <span aria-hidden="true">→</span></a>
-          </nav>
-          <p class="page-note">Layout preview only. No payment is processed here.</p>
-        </div>
-      </main>
-    </div>
+        <aside aria-label="Sample on-screen keypad">
+          <div class="keypad">
+            <button type="button">1</button><button type="button">2</button><button type="button">3</button>
+            <button type="button">4</button><button type="button">5</button><button type="button">6</button>
+            <button type="button">7</button><button type="button">8</button><button type="button">9</button>
+            <button class="key-muted" type="button">Clear</button><button type="button">0</button><button class="key-muted" type="button" aria-label="Delete last digit">⌫</button>
+          </div>
+          <div class="keypad-actions">
+            <a class="button button-primary button-wide" id="cash-pay-link" href="payment-success.html?method=cash">Pay Now</a>
+            <a class="button button-wide" href="payment-method.html"><span aria-hidden="true">←</span> Change payment method</a>
+          </div>
+          <p class="ui-note" id="cash-preview-note">Static keypad preview. No cash payment is processed.</p>
+        </aside>
+      </div>
+    </main>
   </body>
 </html>

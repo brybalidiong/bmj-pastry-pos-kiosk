@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1d3461">
-    <title>Order Summary | BMJ Pastry POS</title>
+    <title>Review Order | BMJ Pastry POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,65 +12,34 @@
     <link rel="stylesheet" href="assets/checkout.css">
     <script src="assets/shell.js" defer></script>
   </head>
-  <body data-step="2">
+  <body data-stage="review">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="app-shell">
-      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
-      <main class="main-content" id="main-content">
-        <div class="page-frame">
-          <header class="main-header">
-            <div>
-              <p class="eyebrow">Transaction flow / Step 02 of 06</p>
-              <h1>Review your order</h1>
-              <p class="header-sub">A final look at every pastry before payment.</p>
-            </div>
-            <span class="status-pill">UI preview</span>
-          </header>
-
-          <section class="hero-card" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <p class="hero-eyebrow">BMJ Pastry / Order summary</p>
-              <h2 id="hero-title">Everything looks good?</h2>
-              <p>Check the items, quantities, and total before choosing how to pay.</p>
-            </div>
-            <span class="hero-step" aria-hidden="true">02</span>
-          </section>
-
-          <div class="content-grid summary-layout">
-            <section class="surface-card workspace-card" aria-labelledby="items-title">
-              <div class="section-heading">
-                <div>
-                  <h3 id="items-title">Order items</h3>
-                  <p>The selected pastries and quantities will appear below.</p>
-                </div>
-              </div>
-              <div class="table-shell">
-                <div class="table-header" aria-hidden="true"><span>Product</span><span>Qty</span><span>Subtotal</span></div>
-                <div class="table-row">
-                  <div class="empty-order compact table-empty">
-                    <div class="empty-icon" aria-hidden="true">≡</div>
-                    <strong>No items to review</strong>
-                    <span>This area will show the order built on the Products page.</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <aside class="surface-card aside-card" aria-labelledby="total-title">
-              <h3 id="total-title">Payment summary</h3>
-              <p>The amount due will match the order total.</p>
-              <div class="detail-row"><span>Items</span><strong>—</strong></div>
-              <div class="total-row"><span>Total due</span><strong>₱0.00</strong></div>
-            </aside>
-          </div>
-
-          <nav class="page-actions" aria-label="Preview navigation">
-            <a class="button" href="index.html"><span aria-hidden="true">←</span> Back to products</a>
-            <a class="button button-primary" href="payment-method.html">Preview payment methods <span aria-hidden="true">→</span></a>
-          </nav>
-          <p class="page-note">Layout preview only. Order details will be added later.</p>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">Step 02 / Review</p>
+          <h1>Review your order</h1>
+          <p>Check your pastries before paying. Going back keeps the order in view.</p>
         </div>
-      </main>
-    </div>
+        <span class="preview-tag">UI preview</span>
+      </div>
+
+      <section class="surface review-card" aria-label="Sample order summary">
+        <div class="review-scroll">
+          <div class="review-head"><span>Product</span><span>Quantity</span><span>Unit price</span><span>Subtotal</span></div>
+          <div class="review-row"><strong>Butter Croissant</strong><span>2</span><span>₱85.00</span><strong>₱170.00</strong></div>
+          <div class="review-row"><strong>Cinnamon Roll</strong><span>1</span><span>₱90.00</span><strong>₱90.00</strong></div>
+          <div class="review-row"><strong>Chocolate Éclair</strong><span>1</span><span>₱110.00</span><strong>₱110.00</strong></div>
+        </div>
+        <div class="review-total"><div><strong>Total amount</strong><small>4 items</small></div><strong class="money">₱370.00</strong></div>
+      </section>
+
+      <nav class="page-actions" aria-label="Order preview navigation">
+        <a class="button" href="index.html"><span aria-hidden="true">←</span> Back to products</a>
+        <a class="button button-primary" href="payment-method.html">Continue to payment <span aria-hidden="true">→</span></a>
+      </nav>
+      <p class="ui-note">This is a static sample order for the UI skeleton.</p>
+    </main>
   </body>
 </html>

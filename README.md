@@ -1,34 +1,40 @@
 # BMJ Pastry POS
 
-Static UI skeleton for a browser-based pastry shop point of sale. Open
-index.html in a browser to preview the six screens and use the navigation to
-move between them.
+Static HTML/CSS preview for a touchscreen pastry-shop web kiosk. Open
+index.html in a browser. No package installation or backend is needed to
+preview the layout.
 
-## Screens
+The screens follow the format shown in IT415 - Sample UI.pdf: a product grid
+beside the cart, an order review, large payment choices, touch-sized payment
+controls, confirmation, and a digital receipt. The visual design follows the
+team's Online Invigilation System: Poppins, navy #1D3461, pale #f4f7fb,
+rounded white cards, and restrained shadows.
 
-1. Products (index.html)
-2. Order Summary (order-summary.html)
-3. Payment Method (payment-method.html)
-4. Payment Processing (payment-processing.html)
-5. Payment Successful (payment-success.html)
-6. Receipt (receipt.html)
+## Preview screens
 
-The screens are visual placeholders. Product selection, cart totals, payment
-validation, receipts, and SQLite storage have not been implemented.
+- index.html: populated sample order
+- new-transaction.html: empty order after a reset
+- order-summary.html: review table
+- payment-method.html: cash, QR, and card choices
+- payment-processing.html: cash keypad and quick amounts
+- payment-processing.html?state=insufficient: insufficient cash example
+- qr-payment.html: QR placeholder and instructions
+- card-payment.html: card reader and processing example
+- payment-success.html: confirmation
+- receipt.html: digital receipt
 
-## Shared design
+All amounts and transaction details are sample data. The product cards, cart
+controls, keypad, payment actions, and print control are visual previews. Page
+links allow the team to inspect the flow; no order or payment is recorded.
 
-assets/styles.css and assets/shell.js provide the common shell. The design
-adapts the team's Online Invigilation System: Poppins type, navy #1D3461,
-pale #f4f7fb page background, rounded white cards, and touch-sized navigation.
-The desktop sidebar becomes a bottom navigation bar on narrow screens.
+## Shared files and planned feature ownership
 
-## Planned feature ownership
+- assets/styles.css and assets/shell.js: shared kiosk shell, typography, colors,
+  progress navigation, and sample-state display.
+- feature/catalog-cart: index.html, new-transaction.html, assets/catalog.css.
+- feature/checkout-payments: order-summary.html, payment-method.html,
+  payment-processing.html, qr-payment.html, card-payment.html, assets/checkout.css.
+- feature/sales-receipts: payment-success.html, receipt.html, assets/receipts.css.
 
-- feature/catalog-cart: Products, cart, and assets/catalog.css.
-- feature/checkout-payments: Order Summary, Payment Method, Payment Processing,
-  and assets/checkout.css.
-- feature/sales-receipts: Payment Successful, Receipt, and assets/receipts.css.
-
-Keep shared navigation and design tokens in the main branch so the three
-feature branches can develop their pages without changing the common shell.
+The common shell is kept on main so the three feature branches can work in
+separate files.

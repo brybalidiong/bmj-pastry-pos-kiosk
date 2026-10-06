@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1d3461">
+    <title>QR Payment | BMJ Pastry POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/checkout.css">
+    <script src="assets/shell.js" defer></script>
+  </head>
+  <body data-stage="payment">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <div class="payment-layout">
+        <section class="surface qr-panel" aria-label="QR code placeholder">
+          <div class="qr-placeholder">
+            <span class="qr-square" aria-hidden="true"></span>
+            <span class="qr-square" aria-hidden="true"></span>
+            <span class="qr-square" aria-hidden="true"></span>
+            <strong>QR CODE<br>PLACEHOLDER</strong>
+          </div>
+          <p class="qr-reference">Ref: QR-DEMO-2026-00125</p>
+        </section>
+
+        <section aria-labelledby="qr-title">
+          <div class="payment-title"><span class="payment-icon" aria-hidden="true">▦</span><h1 id="qr-title">QR Payment</h1></div>
+          <div class="amount-banner"><span>Amount to pay</span><strong>₱370.00</strong></div>
+          <ol class="instruction-list">
+            <li><span>1</span><div>Scan the QR placeholder using a supported payment application.</div></li>
+            <li><span>2</span><div>Check that the amount is ₱370.00 and approve it in your app.</div></li>
+            <li><span>3</span><div>Tap Confirm Payment below.</div></li>
+          </ol>
+          <div class="inline-actions">
+            <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back</a>
+            <a class="button button-primary" href="payment-success.html?method=qr">Confirm Payment</a>
+          </div>
+          <p class="ui-note">QR payment is simulated in this UI preview. No code is scanned or charged.</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

@@ -12,61 +12,43 @@
     <link rel="stylesheet" href="assets/receipts.css">
     <script src="assets/shell.js" defer></script>
   </head>
-  <body data-step="6">
+  <body data-stage="receipt">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="app-shell">
-      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
-      <main class="main-content" id="main-content">
-        <div class="page-frame">
-          <header class="main-header">
-            <div>
-              <p class="eyebrow">Transaction flow / Step 06 of 06</p>
-              <h1>Order receipt</h1>
-              <p class="header-sub">A readable record of the completed purchase.</p>
-            </div>
-            <span class="status-pill">UI preview</span>
-          </header>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <div class="receipt-layout">
+        <section class="surface receipt-paper" aria-labelledby="receipt-title">
+          <h1 class="receipt-brand" id="receipt-title">BMJ PASTRY POS</h1>
+          <p class="receipt-sub">Self-service kiosk · Digital receipt preview</p>
+          <hr class="receipt-divider">
+          <div class="receipt-meta">
+            <div class="detail-row"><span>Transaction No.</span><strong>DEMO-2026-00125</strong></div>
+            <div class="detail-row"><span>Date</span><strong>October 6, 2026 · 10:42 AM</strong></div>
+          </div>
+          <hr class="receipt-divider">
+          <div class="receipt-item"><div><strong>Butter Croissant</strong><small>2 × ₱85.00</small></div><strong>₱170.00</strong></div>
+          <div class="receipt-item"><div><strong>Cinnamon Roll</strong><small>1 × ₱90.00</small></div><strong>₱90.00</strong></div>
+          <div class="receipt-item"><div><strong>Chocolate Éclair</strong><small>1 × ₱110.00</small></div><strong>₱110.00</strong></div>
+          <hr class="receipt-divider">
+          <div class="receipt-sum"><span>TOTAL</span><span>₱370.00</span></div>
+          <div class="receipt-summary">
+            <div class="detail-row"><span>Payment method</span><strong data-preview-method>Cash</strong></div>
+            <div class="detail-row"><span>Amount paid</span><strong data-preview-paid>₱500.00</strong></div>
+            <div class="detail-row"><span>Change</span><strong data-preview-change>₱130.00</strong></div>
+            <div class="detail-row"><span>Status</span><strong class="positive">Payment Successful</strong></div>
+          </div>
+          <p class="receipt-thanks">Thank you for your purchase!</p>
+        </section>
 
-          <section class="hero-card" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <p class="hero-eyebrow">BMJ Pastry / Receipt</p>
-              <h2 id="hero-title">Ready for the next sweet moment.</h2>
-              <p>The final receipt will show every item and payment detail together.</p>
-            </div>
-            <span class="hero-step" aria-hidden="true">06</span>
-          </section>
-
-          <section class="surface-card receipt-paper" aria-labelledby="receipt-title">
-            <div class="receipt-head">
-              <div class="receipt-brand" id="receipt-title">BMJ Pastry</div>
-              <p>Point of Sale / Receipt preview</p>
-            </div>
-            <div class="receipt-meta">
-              <div class="detail-row"><span>Reference number</span><strong>—</strong></div>
-              <div class="detail-row"><span>Date and time</span><strong>—</strong></div>
-            </div>
-            <div class="receipt-items">
-              <div class="table-header" aria-hidden="true"><span>Item</span><span>Qty</span><span>Unit</span><span>Amount</span></div>
-              <div class="empty-order compact">
-                <strong>Receipt items will appear here</strong>
-                <span>Each line will show the pastry, quantity, and price.</span>
-              </div>
-            </div>
-            <div class="receipt-total">
-              <div class="detail-row"><span>Payment method</span><strong>—</strong></div>
-              <div class="detail-row"><span>Amount paid</span><strong>—</strong></div>
-              <div class="detail-row"><span>Change</span><strong>—</strong></div>
-              <div class="total-row"><span>Total</span><strong>₱0.00</strong></div>
-            </div>
-          </section>
-
-          <nav class="page-actions" aria-label="Preview navigation">
-            <a class="button" href="payment-success.html"><span aria-hidden="true">←</span> Back to confirmation</a>
-            <a class="button button-primary" href="index.html">Preview new transaction <span aria-hidden="true">→</span></a>
-          </nav>
-          <p class="page-note">Layout preview only. No receipt is stored yet.</p>
-        </div>
-      </main>
-    </div>
+        <section class="receipt-actions" aria-labelledby="actions-title">
+          <p class="eyebrow">Step 04 / Receipt</p>
+          <h1 id="actions-title">Your receipt</h1>
+          <p>Keep this digital receipt for your records. When finished, start a new transaction to return to an empty order.</p>
+          <a class="button button-primary" href="new-transaction.html"><span aria-hidden="true">+</span> New Transaction</a>
+          <button class="button" type="button">Print Receipt</button>
+          <p class="ui-note">Print is a visual placeholder. The receipt and reset are sample screens only.</p>
+        </section>
+      </div>
+    </main>
   </body>
 </html>

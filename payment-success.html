@@ -12,50 +12,25 @@
     <link rel="stylesheet" href="assets/receipts.css">
     <script src="assets/shell.js" defer></script>
   </head>
-  <body data-step="5">
+  <body data-stage="success">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="app-shell">
-      <aside class="sidebar" id="site-navigation" aria-label="Main navigation"></aside>
-      <main class="main-content" id="main-content">
-        <div class="page-frame">
-          <header class="main-header">
-            <div>
-              <p class="eyebrow">Transaction flow / Step 05 of 06</p>
-              <h1>Payment successful</h1>
-              <p class="header-sub">A clear confirmation before showing the receipt.</p>
-            </div>
-            <span class="status-pill">UI preview</span>
-          </header>
-
-          <section class="hero-card" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <p class="hero-eyebrow">BMJ Pastry / Confirmation</p>
-              <h2 id="hero-title">Thank you for your order.</h2>
-              <p>A completed transaction will show its payment details and reference here.</p>
-            </div>
-            <span class="hero-step" aria-hidden="true">05</span>
-          </section>
-
-          <section class="surface-card success-panel" aria-labelledby="confirmation-title">
-            <span class="success-mark" aria-hidden="true">✓</span>
-            <h3 id="confirmation-title">Confirmation preview</h3>
-            <p>Transaction details will be filled in after a successful payment.</p>
-            <div class="success-details">
-              <div class="detail-row"><span>Reference number</span><strong>—</strong></div>
-              <div class="detail-row"><span>Payment method</span><strong>—</strong></div>
-              <div class="detail-row"><span>Amount paid</span><strong>—</strong></div>
-              <div class="detail-row"><span>Change</span><strong>—</strong></div>
-              <div class="total-row"><span>Total</span><strong>₱0.00</strong></div>
-            </div>
-          </section>
-
-          <nav class="page-actions" aria-label="Preview navigation">
-            <a class="button" href="payment-processing.html"><span aria-hidden="true">←</span> Back to processing</a>
-            <a class="button button-primary" href="receipt.html">Preview receipt <span aria-hidden="true">→</span></a>
-          </nav>
-          <p class="page-note">Layout preview only. This is not a completed transaction.</p>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <p class="eyebrow centered-eyebrow">Step 03 complete / Payment preview</p>
+      <section class="surface success-card" aria-labelledby="success-title">
+        <span class="success-icon" aria-hidden="true">✓</span>
+        <h1 id="success-title">Payment Successful</h1>
+        <p>Thank you! This screen previews a completed transaction.</p>
+        <div class="success-details">
+          <div class="detail-row"><span>Transaction No.</span><strong>DEMO-2026-00125</strong></div>
+          <div class="detail-row"><span>Payment method</span><strong data-preview-method>Cash</strong></div>
+          <div class="detail-row"><span>Transaction amount</span><strong>₱370.00</strong></div>
+          <div class="detail-row"><span>Amount paid</span><strong data-preview-paid>₱500.00</strong></div>
+          <div class="detail-row"><span>Change</span><strong class="positive" data-preview-change>₱130.00</strong></div>
         </div>
-      </main>
-    </div>
+        <a class="button button-primary button-wide" id="receipt-link" href="receipt.html?method=cash">View Receipt <span aria-hidden="true">→</span></a>
+        <p class="ui-note">Sample data only. No payment or sale is recorded.</p>
+      </section>
+    </main>
   </body>
 </html>

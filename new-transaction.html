@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1d3461">
+    <title>New Transaction | BMJ Pastry POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/catalog.css">
+    <script src="assets/shell.js" defer></script>
+  </head>
+  <body data-stage="order">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header" id="site-header"></header>
+    <main class="kiosk-main" id="main-content">
+      <div class="order-layout">
+        <section aria-labelledby="catalog-title">
+          <div class="catalog-top">
+            <div>
+              <p class="eyebrow">Step 01 / New transaction</p>
+              <h1 id="catalog-title">Tap a pastry to add it</h1>
+              <p>The order panel is empty and ready for a new customer.</p>
+            </div>
+            <div class="chip-row" aria-label="Pastry categories">
+              <button class="chip is-active" type="button">All</button>
+              <button class="chip" type="button">Breads</button>
+              <button class="chip" type="button">Desserts</button>
+            </div>
+          </div>
+
+          <div class="product-grid" aria-label="Sample pastry menu">
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#fff0dc"><span class="product-emoji" aria-hidden="true">🥐</span></span><span class="product-bottom"><span class="product-name">Butter Croissant</span><span class="product-price">₱85.00</span></span></button>
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#f3e9e5"><span class="product-emoji" aria-hidden="true">🥐</span></span><span class="product-bottom"><span class="product-name">Chocolate Croissant</span><span class="product-price">₱95.00</span></span></button>
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#f6e6dd"><span class="product-emoji" aria-hidden="true">🍩</span></span><span class="product-bottom"><span class="product-name">Cinnamon Roll</span><span class="product-price">₱90.00</span></span></button>
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#e6edfc"><span class="product-emoji" aria-hidden="true">🫐</span></span><span class="product-bottom"><span class="product-name">Blueberry Danish</span><span class="product-price">₱105.00</span></span></button>
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#efe4de"><span class="product-emoji" aria-hidden="true">🍫</span></span><span class="product-bottom"><span class="product-name">Chocolate Éclair</span><span class="product-price">₱110.00</span></span></button>
+            <button class="product-card" type="button"><span class="product-art" style="--art-bg:#f7e7ee"><span class="product-emoji" aria-hidden="true">🍰</span></span><span class="product-bottom"><span class="product-name">Mini Cheesecake</span><span class="product-price">₱125.00</span></span></button>
+          </div>
+        </section>
+
+        <aside class="surface cart-panel" aria-labelledby="cart-title">
+          <div class="cart-head"><h2 id="cart-title">Your Order</h2><span class="cart-count">0 items</span></div>
+          <div class="empty-cart"><span class="empty-cart-icon" aria-hidden="true">🛒</span><strong>Your order is empty</strong><p>Tap a pastry on the left to add it to the order.</p></div>
+          <div class="cart-total"><span>Total</span><strong>₱0.00</strong></div>
+          <button class="button button-muted button-wide" type="button" disabled>Review order</button>
+          <p class="ui-note">Reset state preview. Product buttons are not connected yet.</p>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
