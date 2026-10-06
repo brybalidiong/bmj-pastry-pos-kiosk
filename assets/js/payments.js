@@ -9,6 +9,7 @@
   const progress = document.getElementById('payment-progress');
   const progressLabel = document.getElementById('progress-label');
   const next = document.getElementById('payment-next');
+  const back = document.querySelector('.inline-actions a[href="payment-method.html"]');
   let cart;
   let processing = false;
   let completed = false;
@@ -125,6 +126,13 @@
       const sale = store.finalizeSale(cart.orderId, payment);
       if (!sale.payment) throw new Error('This order has no payment record. Please ask staff for help.');
       completed = true;
+      if ((page === 'qr' || page === 'card') && back) {
+        // A completed simulated sale cannot return to payment method selection.
+        back.removeAttribute('href');
+        back.setAttribute('aria-disabled', 'true');
+        back.classList.add('button-muted');
+        back.tabIndex = -1;
+      }
       message('✓ Payment Successful' + (page === 'cash' ? ' · Change: ' + money(sale.payment.changeCentavos / 100) : ''));
       next.href = 'payment-success.html?order=' + encodeURIComponent(sale.orderId);
       next.hidden = false;

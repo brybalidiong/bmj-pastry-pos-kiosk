@@ -110,8 +110,15 @@ const server = http.createServer((req, res) => {
       await page.waitForFunction(() => document.getElementById('payment-progress').value > 0);
       const mid = await page.locator('#payment-progress').evaluate(el => el.value);
       assert.ok(mid > 0 && mid < 100);
+      await page.waitForFunction(() => !document.getElementById('payment-next').hidden);
+      const back = page.locator('.inline-actions a').first();
+      assert.equal(await back.getAttribute('href'), null);
+      assert.equal(await back.getAttribute('aria-disabled'), 'true');
+      const completedUrl = page.url();
+      await back.evaluate(element => element.click());
+      assert.equal(page.url(), completedUrl);
       await receipt(170,0);
-      console.log('PASS ' + method + ' incremental progress, success audio, success and receipt');
+      console.log('PASS ' + method + ' incremental progress, disabled Back, success audio, success and receipt');
     }
     await seed();
     await page.goto(base + '/pages/card-payment.html');

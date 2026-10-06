@@ -5,6 +5,8 @@ http://localhost:8080. Site storage must be enabled. No app packages are require
 
 Menu → Order Summary → Payment Method → Cash/Card/QR → gradual processing →
 inline success → Continue → Payment Success → Receipt → New Transaction (live menu).
+After a QR or card simulation completes, its in-page Back control is disabled;
+Continue remains available for the success and receipt screens.
 
 ## Integration
 
