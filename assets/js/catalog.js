@@ -29,6 +29,41 @@
     return value.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
+  function productImage(product) {
+    const art = element('span', 'product-art');
+    const image = element('img', 'product-image');
+    image.alt = product.name;
+    image.decoding = 'async';
+    let fallbackApplied = false;
+
+    function fallback() {
+      image.classList.remove('is-loaded');
+      art.dataset.imageState = fallbackApplied ? 'unavailable' : 'fallback';
+      // A failed placeholder leaves the neutral wrapper visible, without retries.
+      if (fallbackApplied) return;
+      fallbackApplied = true;
+      image.src = 'assets/images/products/placeholder.jpg';
+    }
+
+    image.addEventListener('error', fallback);
+    image.addEventListener('load', async () => {
+      const source = image.src;
+      try {
+        await image.decode();
+        if (image.src !== source) return;
+        image.classList.add('is-loaded');
+        art.dataset.imageState = fallbackApplied ? 'fallback-loaded' : 'loaded';
+      } catch {
+        if (image.src === source) fallback();
+      }
+    });
+    art.dataset.imageState = 'loading';
+    art.append(image);
+    image.src = product.image || 'assets/images/products/placeholder.jpg';
+    if (!product.image) fallbackApplied = true;
+    return art;
+  }
+
   function renderProducts() {
     const quantities = new Map(store.getCart().items.map((item) => [item.productId, item.quantity]));
     const term = normalized(search.value.trim());
@@ -52,12 +87,7 @@
         (soldOut ? 'sold out' : limitReached ? `${quantity} in cart, no more available` : `${available} available, add to order`));
 
       if (quantity > 0) card.append(element('span', 'product-count', String(quantity)));
-      const art = element('span', 'product-art');
-      art.style.setProperty('--art-bg', product.artBg);
-      const emoji = element('span', 'product-emoji', product.emoji);
-      emoji.setAttribute('aria-hidden', 'true');
-      art.append(emoji);
-      card.append(art);
+      card.append(productImage(product));
 
       const meta = element('span', 'product-meta');
       meta.append(element('span', 'product-category', product.category));

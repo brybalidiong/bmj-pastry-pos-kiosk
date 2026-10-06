@@ -13,4 +13,7 @@ window.BMJ_PRODUCTS = Object.freeze([
   { id: 'americano', name: 'Americano', category: 'Coffee', price: 100, baseStock: 15, emoji: '☕', artBg: '#eaded8' },
   { id: 'cafe-latte', name: 'Café Latte', category: 'Coffee', price: 130, baseStock: 10, emoji: '☕', artBg: '#efe4d6' },
   { id: 'iced-mocha', name: 'Iced Mocha', category: 'Coffee', price: 145, baseStock: 0, emoji: '🧋', artBg: '#e7dfdf' },
-].map((product) => Object.freeze(product)));
+].map((product) => Object.freeze({
+  ...product,
+  image: 'assets/images/products/' + product.id + '.jpg',
+})));

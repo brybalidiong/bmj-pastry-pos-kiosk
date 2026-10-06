@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
   if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
   fs.readFile(file, (error, bytes) => {
     if (error) { res.writeHead(404).end(); return; }
-    res.setHeader('Content-Type', {'.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.png':'image/png'}[path.extname(file)] || 'text/plain');
+    res.setHeader('Content-Type', {'.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.png':'image/png', '.jpg':'image/jpeg'}[path.extname(file)] || 'text/plain');
     res.end(bytes);
   });
 });
@@ -76,7 +76,8 @@ const server = http.createServer((req, res) => {
       assert.match(await page.locator('[data-sale="change"]').innerText(), new RegExp(change + '\\.00'));
       await page.reload();
       assert.equal(await page.locator('#receipt-items .receipt-item').count(), 1);
-      await page.getByRole('link', {name: 'New Transaction'}).click();
+      await page.locator('#receipt-done').click();
+      await page.locator('#feedback-skip').click();
       await page.waitForURL(base + '/index.html');
       await page.waitForFunction(() => !!window.BMJPOS);
       assert.equal(await page.evaluate(() => BMJPOS.getCart().itemCount), 0);
