@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <script src="../assets/js/payments.js" defer></script>
   </head>
-  <body data-home-href="../index.html" data-stage="payment">
+  <body data-page="methods" data-home-href="../index.html" data-stage="payment">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
@@ -22,7 +25,7 @@
           <h1>How would you like to pay?</h1>
           <p>Tap one of the large options below.</p>
         </div>
-        <div class="amount-due"><span>Amount due</span><strong>₱370.00</strong></div>
+        <div class="amount-due"><span>Amount due</span><strong data-order-total>—</strong></div>
       </div>
 
       <div class="method-grid" aria-label="Payment method options">
@@ -34,19 +37,20 @@
         <a class="method-card" href="qr-payment.html">
           <span class="method-icon" style="--icon-bg:#e5efff;--icon-fg:#244a9b" aria-hidden="true">▦</span>
           <h2>QR Payment</h2>
-          <p>Scan a code using a supported e-wallet or banking app.</p>
+          <p>Scan the demo code, then simulate a QR payment.</p>
         </a>
         <a class="method-card" href="card-payment.html">
           <span class="method-icon" style="--icon-bg:#edeafd;--icon-fg:#6246a5" aria-hidden="true">▭</span>
           <h2>Credit / Debit Card</h2>
-          <p>Tap, insert, or swipe a card at the reader.</p>
+          <p>Simulate tapping a card at the reader. No card details needed.</p>
         </a>
       </div>
 
       <nav class="page-actions" aria-label="Payment preview navigation">
         <a class="button" href="order-summary.html"><span aria-hidden="true">←</span> Back to order</a>
       </nav>
-      <p class="ui-note">Method cards navigate between UI previews. They do not start a real payment.</p>
+      <p class="ui-note">Prototype only. All payment methods are simulated; no money is transferred.</p>
+    <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>
     </main>
   </body>
 </html>

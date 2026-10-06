@@ -11,30 +11,33 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/receipts.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <script src="../assets/js/payments.js" defer></script>
   </head>
-  <body data-home-href="../index.html" data-stage="receipt">
+  <body data-page="receipt" data-home-href="../index.html" data-stage="receipt">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
+      <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>
+      <a class="text-link" href="order-summary.html">Review current order</a>
       <div class="receipt-layout">
         <section class="surface receipt-paper" aria-labelledby="receipt-title">
           <h1 class="receipt-brand" id="receipt-title">BMJ PASTRY POS</h1>
-          <p class="receipt-sub">Self-service kiosk · Digital receipt preview</p>
+          <p class="receipt-sub">Self-service kiosk · Simulated payment receipt</p>
           <hr class="receipt-divider">
           <div class="receipt-meta">
-            <div class="detail-row"><span>Transaction No.</span><strong>DEMO-2026-00125</strong></div>
-            <div class="detail-row"><span>Date</span><strong>October 6, 2026 · 10:42 AM</strong></div>
+            <div class="detail-row"><span>Transaction No.</span><strong data-sale="order">—</strong></div>
+            <div class="detail-row"><span>Date</span><strong data-sale="date">—</strong></div>
           </div>
           <hr class="receipt-divider">
-          <div class="receipt-item"><div><strong>Butter Croissant</strong><small>2 × ₱85.00</small></div><strong>₱170.00</strong></div>
-          <div class="receipt-item"><div><strong>Cinnamon Roll</strong><small>1 × ₱90.00</small></div><strong>₱90.00</strong></div>
-          <div class="receipt-item"><div><strong>Chocolate Éclair</strong><small>1 × ₱110.00</small></div><strong>₱110.00</strong></div>
+          <div id="receipt-items"></div>
           <hr class="receipt-divider">
-          <div class="receipt-sum"><span>TOTAL</span><span>₱370.00</span></div>
+          <div class="receipt-sum"><span>TOTAL</span><span data-sale="total">—</span></div>
           <div class="receipt-summary">
-            <div class="detail-row"><span>Payment method</span><strong data-preview-method>Cash</strong></div>
-            <div class="detail-row"><span>Amount paid</span><strong data-preview-paid>₱500.00</strong></div>
-            <div class="detail-row"><span>Change</span><strong data-preview-change>₱130.00</strong></div>
+            <div class="detail-row"><span>Payment method</span><strong data-sale="method">Cash</strong></div>
+            <div class="detail-row"><span>Amount paid</span><strong data-sale="paid">—</strong></div>
+            <div class="detail-row"><span>Change</span><strong data-sale="change">—</strong></div>
             <div class="detail-row"><span>Status</span><strong class="positive">Payment Successful</strong></div>
           </div>
           <p class="receipt-thanks">Thank you for your purchase!</p>
@@ -44,9 +47,9 @@
           <p class="eyebrow">Step 04 / Receipt</p>
           <h1 id="actions-title">Your receipt</h1>
           <p>Keep this digital receipt for your records. When finished, start a new transaction to return to an empty order.</p>
-          <a class="button button-primary" href="new-transaction.html"><span aria-hidden="true">+</span> New Transaction</a>
-          <button class="button" type="button">Print Receipt</button>
-          <p class="ui-note">Print is a visual placeholder. The receipt and reset are sample screens only.</p>
+          <a class="button button-primary" href="../index.html"><span aria-hidden="true">+</span> New Transaction</a>
+          <button class="button" id="print-receipt" type="button">Print Receipt</button>
+          <p class="ui-note">Demo sale only. Print opens your browser’s print dialog. New Transaction returns to the live menu.</p>
         </section>
       </div>
     </main>

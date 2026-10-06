@@ -11,25 +11,30 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/receipts.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <script src="../assets/js/payments.js" defer></script>
   </head>
-  <body data-home-href="../index.html" data-stage="success">
+  <body data-page="success" data-home-href="../index.html" data-stage="success">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
-      <p class="eyebrow centered-eyebrow">Step 03 complete / Payment preview</p>
+      <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>
+      <a class="text-link" href="order-summary.html">Review current order</a>
+      <p class="eyebrow centered-eyebrow">Step 03 complete / Simulated payment</p>
       <section class="surface success-card" aria-labelledby="success-title">
         <span class="success-icon" aria-hidden="true">✓</span>
         <h1 id="success-title">Payment Successful</h1>
-        <p>Thank you! This screen previews a completed transaction.</p>
+        <p>Thank you! Your simulated payment is complete.</p>
         <div class="success-details">
-          <div class="detail-row"><span>Transaction No.</span><strong>DEMO-2026-00125</strong></div>
-          <div class="detail-row"><span>Payment method</span><strong data-preview-method>Cash</strong></div>
-          <div class="detail-row"><span>Transaction amount</span><strong>₱370.00</strong></div>
-          <div class="detail-row"><span>Amount paid</span><strong data-preview-paid>₱500.00</strong></div>
-          <div class="detail-row"><span>Change</span><strong class="positive" data-preview-change>₱130.00</strong></div>
+          <div class="detail-row"><span>Transaction No.</span><strong data-sale="order">—</strong></div>
+          <div class="detail-row"><span>Payment method</span><strong data-sale="method">Cash</strong></div>
+          <div class="detail-row"><span>Transaction amount</span><strong data-sale="total">—</strong></div>
+          <div class="detail-row"><span>Amount paid</span><strong data-sale="paid">—</strong></div>
+          <div class="detail-row"><span>Change</span><strong class="positive" data-sale="change">—</strong></div>
         </div>
-        <a class="button button-primary button-wide" id="receipt-link" href="receipt.html?method=cash">View Receipt <span aria-hidden="true">→</span></a>
-        <p class="ui-note">Sample data only. No payment or sale is recorded.</p>
+        <a class="button button-primary button-wide" id="receipt-link" >View Receipt <span aria-hidden="true">→</span></a>
+        <p class="ui-note">Prototype receipt. A simulated sale is saved in this browser; no money was transferred.</p>
       </section>
     </main>
   </body>

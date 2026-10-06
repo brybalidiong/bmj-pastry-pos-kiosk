@@ -1,1 +1,10 @@
 /* Confirmation and receipt styles belong to feature/sales-receipts. */
+[hidden] { display: none !important; }
+#payment-status.is-error { color: var(--danger); }
+[data-sale="order"] { overflow-wrap: anywhere; }
+@media print {
+  .site-header, .receipt-actions, .skip-link, #payment-status, main > .text-link { display: none !important; }
+  .kiosk-main { margin: 0; padding: 0; }
+  .receipt-layout { display: block; }
+  .receipt-paper { box-shadow: none; border: none; }
+}

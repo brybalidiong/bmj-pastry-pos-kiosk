@@ -1,1 +1,11 @@
 /* Summary and payment styles belong to feature/checkout-payments. */
+[hidden] { display: none !important; }
+#payment-status { min-height: 1.5em; font-size: .95rem; }
+#payment-status.is-error { color: var(--danger); }
+.method-card[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+.button:disabled { opacity: .55; cursor: not-allowed; }
+.payment-qr { display: block; width: min(100%, 320px); height: auto; }
+#payment-progress { width: 85%; height: 12px; accent-color: var(--navy); }
+.is-processing .bank-card { animation: card-tap 1s ease-in-out infinite alternate; }
+@keyframes card-tap { to { transform: translate(-20px, 22px) rotate(-5deg); } }
+@media (prefers-reduced-motion: reduce) { .is-processing .bank-card { animation: none; } }

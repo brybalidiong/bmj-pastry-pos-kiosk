@@ -11,37 +11,34 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <script src="../assets/js/payments.js" defer></script>
   </head>
-  <body data-home-href="../index.html" data-stage="payment">
+  <body data-page="qr" data-home-href="../index.html" data-stage="payment">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
       <div class="payment-layout">
-        <section class="surface qr-panel" aria-label="QR code placeholder">
-          <div class="qr-placeholder">
-            <span class="qr-square" aria-hidden="true"></span>
-            <span class="qr-square" aria-hidden="true"></span>
-            <span class="qr-square" aria-hidden="true"></span>
-            <strong>QR CODE<br>PLACEHOLDER</strong>
-          </div>
-          <p class="qr-reference">Ref: QR-DEMO-2026-00125</p>
+        <section class="surface qr-panel" aria-label="Scannable demo QR code">
+          <img class="payment-qr" src="../assets/images/payment-qr.png" width="392" height="392" alt="QR code linking to the provided Google Drive file">
+          <p class="qr-reference">Scan this QR code to open the demo file</p>
         </section>
 
         <section aria-labelledby="qr-title">
           <div class="payment-title"><span class="payment-icon" aria-hidden="true">▦</span><h1 id="qr-title">QR Payment</h1></div>
-          <div class="amount-banner"><span>Amount to pay</span><strong>₱370.00</strong></div>
-          <ol class="instruction-list">
-            <li><span>1</span><div>Scan the QR placeholder using a supported payment application.</div></li>
-            <li><span>2</span><div>Check that the amount is ₱370.00 and approve it in your app.</div></li>
-            <li><span>3</span><div>Tap Confirm Payment below.</div></li>
-          </ol>
+          <div class="amount-banner"><span>Amount to pay</span><strong data-order-total>—</strong></div>
+          <p>Scan this code with a normal QR scanner to open the Google Drive file. Then use the button below to simulate payment.</p>
+          <div class="processing-banner"><progress id="payment-progress" max="100" value="0" aria-label="Simulated payment progress"></progress> <span id="progress-label">0%</span></div>
           <div class="inline-actions">
             <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back</a>
-            <a class="button button-primary" href="payment-success.html?method=qr">Confirm Payment</a>
+            <button class="button button-primary" id="simulate-payment" type="button" disabled>Simulate QR Payment</button>
+            <a class="button button-primary" id="payment-next" hidden>Continue →</a>
           </div>
-          <p class="ui-note">QR payment is simulated in this UI preview. No code is scanned or charged.</p>
+          <p class="ui-note">Simulation only. Opening the Google Drive file does not make or confirm a payment.</p>
         </section>
       </div>
+    <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>
     </main>
   </body>
 </html>

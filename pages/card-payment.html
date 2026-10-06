@@ -11,37 +11,38 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
     <script src="../assets/js/shell.js" defer></script>
+    <script src="../assets/js/products.js" defer></script>
+    <script src="../assets/js/order-store.js" defer></script>
+    <script src="../assets/js/payments.js" defer></script>
   </head>
-  <body data-home-href="../index.html" data-stage="payment">
+  <body data-page="card" data-home-href="../index.html" data-stage="payment">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main class="kiosk-main" id="main-content">
       <div class="payment-layout">
         <section class="surface terminal-panel" aria-label="Illustration of a card reader">
           <div class="card-terminal" aria-hidden="true">
-            <div class="terminal-screen"><small>PROCESSING</small><strong>₱370.00</strong></div>
+            <div class="terminal-screen"><small>DEMO READER</small><strong data-order-total>—</strong></div>
             <span class="terminal-tap">)))</span>
             <span class="terminal-slot"></span>
-            <div class="bank-card"><span class="bank-chip"></span><span>•••• 4821</span></div>
+            <div class="bank-card"><span class="bank-chip"></span><span>DEMO CARD</span></div>
           </div>
         </section>
 
         <section aria-labelledby="card-title">
           <div class="payment-title"><span class="payment-icon" aria-hidden="true">▭</span><h1 id="card-title">Credit / Debit Card</h1></div>
-          <div class="amount-banner"><span>Amount due</span><strong>₱370.00</strong></div>
-          <p class="card-instruction">Please tap, insert, or swipe your card.</p>
-          <div class="processing-banner">
-            <strong>Processing payment…</strong>
-            <div class="processing-track" aria-hidden="true"><span></span></div>
-            <small>Do not remove your card until the payment is complete.</small>
-          </div>
+          <div class="amount-banner"><span>Amount due</span><strong data-order-total>—</strong></div>
+          <p class="card-instruction">Ready to tap card. Use the simulation control below.</p>
+          <div class="processing-banner"><progress id="payment-progress" max="100" value="0" aria-label="Simulated payment progress"></progress> <span id="progress-label">0%</span></div>
           <div class="inline-actions">
             <a class="button" href="payment-method.html"><span aria-hidden="true">←</span> Back</a>
-            <a class="button button-primary" href="payment-success.html?method=card">Process Payment</a>
+            <button class="button button-primary" id="simulate-payment" type="button" disabled>Simulate Card Scan</button>
+            <a class="button button-primary" id="payment-next" hidden>Continue →</a>
           </div>
           <p class="ui-note">Card reader and processing state are visual previews; no card data is collected.</p>
         </section>
       </div>
+    <p id="payment-status" class="ui-note" role="status" aria-live="polite"></p>
     </main>
   </body>
 </html>

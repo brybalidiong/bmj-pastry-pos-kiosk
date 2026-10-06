@@ -179,6 +179,7 @@
     // Completed orders retain their original item and price snapshots even if
     // the menu changes later.
     assertItemsAndTotals(sale, 'Saved completed sale ' + id, false);
+    if (sale.payment !== undefined) validatePayment(sale.payment, sale.total);
   }
 
   function inventory() {
@@ -340,7 +341,24 @@
     return { ...clone(cart), status: 'abandoned', updatedAt: new Date().toISOString() };
   }
 
-  function finalizeSale(orderId) {
+  function getSale(orderId) {
+    const saved = inventory().completedOrders[orderId];
+    return saved ? clone(saved) : null;
+  }
+
+  function validatePayment(payment, total) {
+    if (!isRecord(payment) || payment.simulated !== true ||
+        !['cash', 'card', 'qr'].includes(payment.method) ||
+        !Number.isSafeInteger(payment.paidCentavos) ||
+        !Number.isSafeInteger(payment.changeCentavos) ||
+        payment.paidCentavos < total * 100 ||
+        payment.changeCentavos !== payment.paidCentavos - total * 100 ||
+        (payment.method !== 'cash' && payment.paidCentavos !== total * 100)) {
+      throw new Error('Invalid simulated payment. Check the amount and try again.');
+    }
+  }
+
+  function finalizeSale(orderId, payment) {
     if (typeof orderId !== 'string' || !/^BMJ-[A-Za-z0-9-]+$/.test(orderId)) {
       throw new Error('Provide the draft cart orderId when finalizing a completed sale.');
     }
@@ -356,6 +374,7 @@
       throw new Error('Order ID does not match the active draft cart. Reload checkout and use its current orderId.');
     }
     if (cart.items.length === 0) throw new Error('Cannot finalize an empty cart.');
+    if (payment !== undefined) validatePayment(payment, cart.total);
 
     const nextStock = { ...savedInventory.stockByProductId };
     for (const item of cart.items) {
@@ -375,6 +394,7 @@
       items: clone(cart.items),
       itemCount: cart.itemCount,
       total: cart.total,
+      ...(payment === undefined ? {} : { payment: clone(payment) }),
     };
     // One localStorage write commits both the stock and idempotency record.
     writeJson(INVENTORY_KEY, {
@@ -398,5 +418,6 @@
     removeItem,
     abandonOrder,
     finalizeSale,
+    getSale,
   });
 })();
